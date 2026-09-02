@@ -94,4 +94,3 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change. Report securi
 ## License
 
 MIT. See [LICENSE](LICENSE).
-

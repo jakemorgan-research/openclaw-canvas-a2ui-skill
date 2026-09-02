@@ -1,0 +1,5 @@
+interface:
+  display_name: "OpenClaw Canvas A2UI"
+  short_description: "Render OpenClaw A2UI with a verified sequence"
+  default_prompt: "Create or diagnose this OpenClaw Canvas/A2UI flow using the smallest verified rendering sequence."
+
