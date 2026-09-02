@@ -2,7 +2,7 @@
 
 Review date: 2026-09-02. Status: private development, no Release.
 
-Local review: 22 Python test methods passed; the HTML card was inspected in the browser at desktop and narrow widths, with no horizontal overflow. Both original SVG diagrams were rendered and visually inspected. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
+Local review: 23 Python test methods passed; the HTML card was inspected in the browser at desktop and narrow widths, with no horizontal overflow. Both original SVG diagrams were rendered and visually inspected. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
 
 | Layer | Evidence / limit |
 | --- | --- |
