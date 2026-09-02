@@ -1,24 +1,28 @@
-# Validation matrix
+# Preflight contract
 
-| Case | Expected result |
+This validator checks a small **teaching-plan format**, not full API correctness.
+
+| Input | Expected |
 | --- | --- |
-| A2UI mode begins with `canvas.a2ui.push` | Pass |
-| A2UI mode begins with `canvas.a2ui.pushJSONL` | Pass |
-| A2UI mode begins with one reset, then a push | Pass |
-| A2UI mode contains `canvas.present` | Fail |
-| URL mode begins with `canvas.present` | Pass |
-| URL mode mixes in A2UI actions | Fail |
-| Unknown mode or empty sequence | Fail |
+| `widget-good.json` | PASS: current HTML plan |
+| `a2ui-good.json` | PASS: legacy order only |
+| `a2ui-reset-good.json` | PASS: legacy reset then push |
+| `url-good.json` | PASS: legacy URL order only |
+| `a2ui-bad-present-first.json` | FAIL: lab's minimal-order convention |
+| Wrong root type, unknown action/profile, missing widget fields | FAIL |
 
-Run locally:
-
-```powershell
+```text
+python scripts/validate_sequence.py examples/widget-good.json
 python scripts/validate_sequence.py examples/a2ui-good.json
 python scripts/validate_sequence.py examples/a2ui-reset-good.json
 python scripts/validate_sequence.py examples/url-good.json
+python -m unittest discover -s tests -v
+```
+
+The above commands should pass. Run this negative example separately; **exit code 1 is expected**:
+
+```text
 python scripts/validate_sequence.py examples/a2ui-bad-present-first.json
 ```
 
-The second command is expected to fail. That failure proves the guard catches the problematic ordering.
-
-The validator checks ordering and mode separation. It does not connect to a node, validate every A2UI component field, or prove that a render occurred.
+CLI exits: 0 accepted plan; 1 rejected plan; 2 usage, encoding, size, or JSON input error. Maximum input is 1 MiB. Error output omits file contents. This tool does not connect to OpenClaw, execute HTML, or verify renderer/schema compatibility.

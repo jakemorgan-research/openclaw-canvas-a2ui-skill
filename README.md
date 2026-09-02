@@ -1,96 +1,60 @@
-# OpenClaw Canvas A2UI Skill
+<p align="center"><img src="docs/media/hero.svg" alt="Canvas and A2UI: discover, preview, verify" width="100%"></p>
+<p align="center"><strong>A version-aware skill, offline preflight checks, and a small working UI example.</strong><br><sub>Private review · MIT · Python 3.9+ · Not affiliated with OpenClaw</sub></p>
 
-An installable companion Skill for creating and diagnosing OpenClaw Canvas/A2UI flows without the common empty-Canvas ordering mistake.
+| First time here? | Try an artifact | Maintain / contribute |
+| --- | --- | --- |
+| [中文五步入门](docs/GETTING_STARTED.zh-CN.md) | [Synthetic widget example](examples/README.md) | [Developer guide](docs/DEVELOPER_GUIDE.md) |
 
-> Status: private preview. The repository is intentionally not released or promoted yet.
+<p align="center"><img src="docs/media/workflow.svg" alt="Check installed capabilities before choosing current or legacy profile; validate and inspect the actual result" width="100%"></p>
 
-## Choose the mode in 30 seconds
-
-```text
-A2UI payload?  yes -> optional reset only for stale state -> push -> verify
-               no  -> URL/HTML surface -> present -> verify
-```
-
-## The one rule that prevents most confusion
+## Run something now — no account or key required
 
 ```text
-Incorrect A2UI flow                 Recommended A2UI flow
-
-canvas.present                     canvas.a2ui.push / pushJSONL
-      |                                      |
-      v                                      v
-empty or waiting surface            verify returned result
-      |                                      |
-      v                                      v
-push A2UI later                     snapshot only when needed
-```
-
-`canvas.present` remains correct for URL or HTML surfaces. The problem is using it as a preparatory step for an A2UI payload.
-
-## What developers get
-
-- A focused `SKILL.md` that guides agents toward a minimal command sequence.
-- A preflight validator for A2UI and URL-mode sequences.
-- A known-good example and a deliberately bad example.
-- A short reproduction guide for empty, waiting, or Unknown results.
-- Privacy checks designed to catch common personal and secret-like data before sharing.
-
-## Install
-
-Project-level install:
-
-```powershell
-openclaw skills install git:jakemorgan-research/openclaw-canvas-a2ui-skill@main
-```
-
-While this preview is private, Git must already have access to the repository. A checked-out copy can be installed with `openclaw skills install .`.
-
-Global install:
-
-```powershell
-openclaw skills install git:jakemorgan-research/openclaw-canvas-a2ui-skill@main --global
-```
-
-Then ask your agent to create or diagnose an OpenClaw Canvas/A2UI flow. The skill should activate for empty Canvas, waiting, Unknown, action-ordering, JSONL, and node-selection questions.
-
-## Validate before use
-
-```powershell
-python scripts/validate_repo.py
-python scripts/validate_sequence.py examples/a2ui-good.json
-python scripts/validate_sequence.py examples/a2ui-reset-good.json
-python scripts/validate_sequence.py examples/url-good.json
-python scripts/validate_sequence.py examples/a2ui-bad-present-first.json
+python scripts/validate_sequence.py examples/widget-good.json
 python -m unittest discover -s tests -v
 ```
 
-The final command should fail by design.
+Expected: a preflight PASS and passing tests. Open [the local preview](examples/widget-preview.html) in a browser after downloading the repository. It displays a synthetic status card without network requests.
 
-## Repository map
+**The preview is HTML, not a live A2UI renderer.** The JSON files are teaching plans; this tool does not execute them against OpenClaw.
+
+## Choose the right path
+
+| Your installed environment | Use |
+| --- | --- |
+| Current widget-capable session | [HTML widget example](examples/widget-good.json) and the installed `show_widget` schema |
+| Current A2UI dashboard integration | [Payload contract](references/payload-contract.md); use the installed registered-source schema |
+| Older node exposing `canvas.a2ui.*` | [Legacy order-only examples](references/mode-selection.md) |
+| No matching capability | Stop; do not guess commands or weaken permissions |
+
+Upstream documentation inspected on **2026-09-02** separates dashboard A2UI from node Canvas. This repository does not claim that historical node commands work in every release. [Official node reference](https://github.com/openclaw/openclaw/blob/main/docs/nodes/index.md#macos-widget-panel).
+
+## Install the companion skill
+
+Review [SKILL.md](SKILL.md) first, then:
 
 ```text
-SKILL.md                    Agent instructions
-agents/openai.yaml          Display metadata
-scripts/                    Local validation tools
-examples/                   Good and bad teaching sequences
-tests/                      Ordering and mode-separation regression tests
-references/                 Mode choice, reproduction, and validation notes
+openclaw skills install git:jakemorgan-research/openclaw-canvas-a2ui-skill@main
 ```
 
-## Scope and limitations
+Private access is required. A local checkout also works with `openclaw skills install .`. For reproducibility replace `main` with a reviewed commit. Git-installed skills are refreshed by reinstalling, not by assuming registry updates apply. [Official installation guide](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md#installing-from-clawhub).
 
-This repository documents and checks command ordering; it is not an OpenClaw fork and does not replace upstream Canvas code. Actual command availability depends on the connected node, platform, permissions, and installed OpenClaw version. A passing local sequence check does not prove that a remote node rendered successfully.
+Try asking:
 
-## Official references
+> Use this skill to inspect the available Canvas/widget capabilities. Show the synthetic example only if supported, and distinguish local preflight from an observed render.
 
-- [OpenClaw Nodes documentation](https://github.com/openclaw/openclaw/blob/main/docs/nodes/index.md)
-- [OpenClaw Skills documentation](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md)
-- [OpenClaw FAQ](https://github.com/openclaw/openclaw/blob/main/docs/help/faq.md)
+<details>
+<summary><strong>What the validator does — and does not do</strong></summary>
 
-## Contributing and security
+It rejects malformed plans, unknown actions, wrong profile/mode combinations, and legacy sequences outside this lab's minimal-order convention. The current HTML profile checks required fields and rejects capability requests in the teaching plan.
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change. Report security or privacy problems using the private process in [SECURITY.md](SECURITY.md); do not place secrets or personal information in a public issue.
+It does not validate the full OpenClaw or A2UI schema, execute tools, sandbox arbitrary HTML, or prove rendering. [Exact contract](references/validation.md).
+</details>
 
-## License
+<details>
+<summary><strong>Trust, privacy, and feedback</strong></summary>
 
-MIT. See [LICENSE](LICENSE).
+All examples and diagrams are original synthetic material. No private configuration, screenshots, credentials, or device identifiers belong here. Use the built-in issue forms for reproducible problems or beginner feedback; collaborators only while private.
+
+[Verification status](docs/VERIFICATION.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [License](LICENSE)
+</details>

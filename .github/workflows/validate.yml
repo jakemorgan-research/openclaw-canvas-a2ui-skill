@@ -1,35 +1,39 @@
 name: Validate
-
 on:
   push:
   pull_request:
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
-  validate:
+  offline:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Repository privacy and readiness check
-        run: python scripts/validate_repo.py
-      - name: Known-good A2UI sequence
-        run: python scripts/validate_sequence.py examples/a2ui-good.json
-      - name: Known-good reset and URL sequences
+          python-version: ${{ matrix.python }}
+      - name: Privacy including reachable history
+        run: python scripts/validate_repo.py --history
+      - name: Documentation links and SVG structure
+        run: python scripts/check_docs.py
+      - name: Behavioral tests
+        run: python -m unittest discover -s tests -v
+      - name: Current and legacy teaching plans
         run: |
+          python scripts/validate_sequence.py examples/widget-good.json
+          python scripts/validate_sequence.py examples/a2ui-good.json
           python scripts/validate_sequence.py examples/a2ui-reset-good.json
           python scripts/validate_sequence.py examples/url-good.json
-      - name: Unit tests
-        run: python -m unittest discover -s tests -v
-      - name: Known-bad ordering must be rejected
+      - name: Negative plan must fail with exit code 1
         shell: bash
         run: |
-          if python scripts/validate_sequence.py examples/a2ui-bad-present-first.json; then
-            echo "validator unexpectedly accepted the bad sequence"
-            exit 1
-          fi
+          set +e
+          python scripts/validate_sequence.py examples/a2ui-bad-present-first.json
+          result=$?
+          test "$result" -eq 1

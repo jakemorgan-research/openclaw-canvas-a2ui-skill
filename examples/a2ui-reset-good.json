@@ -1,16 +1,12 @@
 {
+  "profile": "legacy-node",
   "mode": "a2ui",
   "actions": [
     {
       "action": "canvas.a2ui.reset"
     },
     {
-      "action": "canvas.a2ui.push",
-      "payload": "A minimal A2UI payload"
-    },
-    {
-      "action": "canvas.snapshot"
+      "action": "canvas.a2ui.push"
     }
   ]
 }
-

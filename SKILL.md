@@ -1,36 +1,30 @@
 ---
 name: openclaw-canvas-a2ui-skill
-description: Create and diagnose OpenClaw Canvas/A2UI flows with capability checks, minimal rendering sequences, and evidence-based validation. Use for empty Canvas, waiting, Unknown, push/present ordering, A2UI JSONL, or Canvas node-selection problems; do not use for unrelated web UI development.
+description: Select and diagnose OpenClaw Canvas, dashboard A2UI, and widget flows using installed capabilities and version-specific contracts. Use for empty or unavailable surfaces, legacy push ordering, payload compatibility, or Canvas node selection; not general web development.
 ---
 
-# OpenClaw Canvas A2UI
+# OpenClaw Canvas and A2UI
 
-Use the smallest valid Canvas command sequence. Decide the rendering mode before issuing any Canvas action.
+Check the installed surface and tool schema before selecting a command. Do not turn a historical empty-Canvas case into a universal ordering rule.
 
-## Workflow
+## Decision flow
 
-1. Confirm that the selected node advertises Canvas capability.
-2. Choose exactly one rendering mode:
-   - A2UI text: `canvas.a2ui.push`
-   - A2UI JSONL: `canvas.a2ui.pushJSONL`
-   - URL or HTML surface: `canvas.present`
-3. For A2UI, send the payload first. Do not open an empty Canvas with `canvas.present`.
-4. Use `canvas.a2ui.reset` only when the user requests a clean surface or stale state is demonstrated; follow it immediately with a push.
-5. Check the command result. Take a snapshot only when visual evidence is necessary.
-6. If the result is waiting, Unknown, or empty, compare the actual sequence with [references/mode-selection.md](references/mode-selection.md) and [references/validation.md](references/validation.md).
+1. Record component versions and advertised tool/action names without personal or device identifiers.
+2. Use [mode selection](references/mode-selection.md) to distinguish current session widgets, dashboard A2UI, native node panels, and legacy node A2UI.
+3. For current HTML widgets, adapt the synthetic arguments in `examples/widget-good.json` to the installed `show_widget` schema. The outer plan is not tool input.
+4. For current A2UI, read [payload contract](references/payload-contract.md). Do not send legacy node pushes to a dashboard or invent the registered-source envelope.
+5. Only if the installed node advertises the legacy actions, use the legacy plans as order-only comparisons. Direct push is this lab's minimal convention, not an upstream ban on `canvas.present`.
+6. Inspect the tool result and, when useful, the visible surface. A preflight pass, receipt, or timeout alone does not prove rendering. Diagnose using [reproduction](references/reproduction.md).
 
-## Safety boundaries
+## Boundaries
 
-- Never expose tokens, local paths, device names, IP addresses, session identifiers, logs, or private screenshots.
-- Do not overwrite OpenClaw's bundled Canvas skill automatically. Prefer this companion skill or a reviewed managed override.
-- Do not invent successful rendering. Report the returned command status and label anything not observed as unverified.
-- Ask before changing node configuration or replacing an existing managed skill.
+- Never export private paths, identifiers, credentials, raw logs, or unredacted screenshots.
+- Do not install/enable plugins, change permissions, reset surfaces, replace skills, or pin persistent widgets without authorization for that action.
+- If a tool or capability is absent, stop at that boundary and explain the supported alternative; do not bypass it.
+- Ask before a legacy reset that would remove existing content. A blank surface is not by itself proof that reset is needed.
+- Offline validators check teaching contracts, not arbitrary-code security or complete A2UI schemas.
+- For skill overrides read [safe customization](references/skill-design.md); preserve the user's chosen runtime.
 
-## Included resources
+## Completion
 
-- `scripts/validate_sequence.py`: checks a proposed command sequence before execution.
-- `examples/a2ui-good.json`: minimal valid A2UI example.
-- `examples/a2ui-bad-present-first.json`: intentionally invalid teaching example.
-- `references/reproduction.md`: short reproduction and diagnosis flow.
-- `references/skill-design.md`: safe customization guidance.
-- `references/payload-contract.md`: payload/version boundaries and what must still be verified upstream.
+Report chosen surface, verified capability, preflight result, observed render (or unverified), and one bounded next check. Use [validation](references/validation.md) for expected outcomes.

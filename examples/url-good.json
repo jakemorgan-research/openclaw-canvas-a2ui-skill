@@ -1,13 +1,12 @@
 {
+  "profile": "legacy-node",
   "mode": "url",
   "actions": [
     {
-      "action": "canvas.present",
-      "url": "https://example.com/demo"
+      "action": "canvas.present"
     },
     {
       "action": "canvas.snapshot"
     }
   ]
 }
-

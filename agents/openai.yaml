@@ -1,5 +1,4 @@
 interface:
   display_name: "OpenClaw Canvas A2UI"
-  short_description: "Render OpenClaw A2UI with a verified sequence"
-  default_prompt: "Create or diagnose this OpenClaw Canvas/A2UI flow using the smallest verified rendering sequence."
-
+  short_description: "Choose compatible Canvas, A2UI, and widget paths"
+  default_prompt: "Use $openclaw-canvas-a2ui-skill to check available capabilities and propose a compatible minimal example without claiming an unobserved render."

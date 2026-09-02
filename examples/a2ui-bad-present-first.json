@@ -1,13 +1,12 @@
 {
+  "profile": "legacy-node",
   "mode": "a2ui",
   "actions": [
     {
       "action": "canvas.present"
     },
     {
-      "action": "canvas.a2ui.pushJSONL",
-      "payload": "{\"type\":\"text\",\"text\":\"Hello Canvas\"}"
+      "action": "canvas.a2ui.pushJSONL"
     }
   ]
 }
-
