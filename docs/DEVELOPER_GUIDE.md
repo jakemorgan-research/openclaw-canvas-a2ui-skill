@@ -18,13 +18,15 @@ python -m unittest discover -s tests -v
 
 Use `python scripts/validate_sequence.py examples/widget-good.json` for the current widget teaching profile.
 
+The [real A2UI demo](A2UI_DEMO.md) is a separate manual acceptance test using an explicitly selected installed renderer. CI tests its synthetic fixture and local HTTP route allowlist, but neither downloads nor executes the third-party renderer. Keep the renderer and machine-specific acceptance logs outside the repository.
+
 ## Repository map
 
 | Directory | Responsibility |
 | --- | --- |
 | `SKILL.md` + `references/` | Agent decisions and conditional guidance |
 | `examples/` | Synthetic inputs and expected outcomes |
-| `scripts/` | Offline checks; no automatic upload |
+| `scripts/` | Offline checks and an opt-in loopback renderer demo; no automatic upload |
 | `tests/` | Behavioral regressions |
 | `docs/media/` | Original, text-readable SVG diagrams |
 | `.github/` | Checks, issue forms, and PR review |

@@ -1,25 +1,27 @@
 # Verification boundary
 
-Review date: 2026-09-02. Status: private development, no Release.
+Review date: 2026-09-03. Distribution: experimental source toolkit; visibility and Release publication require separate approval.
 
-Local review: 23 Python test methods passed; the HTML card was inspected in the browser at desktop and narrow widths, with no horizontal overflow. Both original SVG diagrams were rendered and visually inspected. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
+Local review: 32 Python test methods passed. The HTML card was inspected at desktop and narrow widths; original SVG diagrams were visually reviewed. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. [Recorded acceptance](ACCEPTANCE.md) adds isolated skill installation/discovery and a real v0.8 renderer display/update on OpenClaw 2026.8.2. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
 
 | Layer | Evidence / limit |
 | --- | --- |
 | Offline plan validation | Positive and negative synthetic cases in unit tests |
 | CLI input handling | Wrong JSON types, invalid encoding, size limit, and exit codes covered |
 | Documentation | Local link and SVG structure checks |
-| UI example | Local HTML preview; not a live OpenClaw screenshot |
+| HTML example | Separate offline HTML preview; not A2UI |
+| A2UI example | Real installed v0.8 renderer displayed the synthetic JSONL card and a visible bound-data update; [reproduce](A2UI_DEMO.md) |
+| Skill installation | Local clean source installed and discovered as eligible in isolated OpenClaw 2026.8.2 state |
 | Current API guidance | Default-branch docs inspected; installed releases can differ |
-| Legacy A2UI | Order-only convention; no full payload or renderer validation |
+| Legacy action plans | Order-only convention; not the new runnable v0.8 payload example |
 | Live Gateway / node / dashboard | Not executed by this repository's CI; user acceptance still required |
 
 ## Before a public release
 
 - Re-run privacy checks on tracked files, assets, and reachable history.
 - Review both author/committer identities and any attachments.
-- Run the example on a specifically recorded OpenClaw version and supported client.
-- Capture synthetic-only visual evidence and record any partial result.
+- Reproduce the recorded runtime acceptance when changing the payload, supported runtime, or renderer harness.
+- Record partial results honestly; model/Gateway/client integration remains outside the tested scope.
 - Ensure installation, uninstall/rollback instructions, issue forms, and checks agree.
 - Obtain explicit approval for visibility changes and Release creation.
 

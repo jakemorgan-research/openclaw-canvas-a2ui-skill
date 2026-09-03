@@ -1,5 +1,5 @@
 <p align="center"><img src="docs/media/hero.svg" alt="Canvas and A2UI: discover, preview, verify" width="100%"></p>
-<p align="center"><strong>A version-aware skill, offline preflight checks, and a small working UI example.</strong><br><sub>Private review · MIT · Python 3.9+ · Not affiliated with OpenClaw</sub></p>
+<p align="center"><strong>A version-aware skill, offline preflight checks, and a runnable A2UI card.</strong><br><sub>Experimental toolkit · MIT · Python 3.9+ · Tested with OpenClaw 2026.8.2 · Not affiliated with OpenClaw</sub></p>
 
 | First time here? | Try an artifact | Maintain / contribute |
 | --- | --- | --- |
@@ -16,13 +16,18 @@ python -m unittest discover -s tests -v
 
 Expected: a preflight PASS and passing tests. Open [the local preview](examples/widget-preview.html) in a browser after downloading the repository. It displays a synthetic status card without network requests.
 
-**The preview is HTML, not a live A2UI renderer.** The JSON files are teaching plans; this tool does not execute them against OpenClaw.
+**The preview is HTML, not A2UI.** For a real A2UI surface and a visible data update, follow the [renderer demo](docs/A2UI_DEMO.md). It uses your installed OpenClaw renderer, synthetic JSONL, and a loopback-only server; no Gateway or model credentials are required. The older `.json` files remain teaching plans.
+
+![Three messages create a card, then a synthetic data update changes its text](docs/media/a2ui-demo.svg)
+
+[Recorded installation and rendering acceptance](docs/ACCEPTANCE.md) distinguishes tested behavior from untested integrations.
 
 ## Choose the right path
 
 | Your installed environment | Use |
 | --- | --- |
 | Current widget-capable session | [HTML widget example](examples/widget-good.json) and the installed `show_widget` schema |
+| Learn real A2UI v0.8 payloads | [Runnable card and update](docs/A2UI_DEMO.md), tested with the installed 2026.8.2 renderer |
 | Current A2UI dashboard integration | [Payload contract](references/payload-contract.md); use the installed registered-source schema |
 | Older node exposing `canvas.a2ui.*` | [Legacy order-only examples](references/mode-selection.md) |
 | No matching capability | Stop; do not guess commands or weaken permissions |
@@ -37,7 +42,7 @@ Review [SKILL.md](SKILL.md) first, then:
 openclaw skills install git:jakemorgan-research/openclaw-canvas-a2ui-skill@main
 ```
 
-Private access is required. A local checkout also works with `openclaw skills install .`. For reproducibility replace `main` with a reviewed commit. Git-installed skills are refreshed by reinstalling, not by assuming registry updates apply. [Official installation guide](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md#installing-from-clawhub).
+If the repository is private, access permission is required. A local checkout also works with `openclaw skills install .`; local managed installation and discovery were [tested in isolation](docs/ACCEPTANCE.md). For reproducibility replace `main` with a reviewed commit. Git-installed skills are refreshed by reinstalling, not by assuming registry updates apply. [Official installation guide](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md#installing-from-clawhub).
 
 Try asking:
 

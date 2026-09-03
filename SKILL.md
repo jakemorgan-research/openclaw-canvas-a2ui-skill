@@ -12,7 +12,7 @@ Check the installed surface and tool schema before selecting a command. Do not t
 1. Record component versions and advertised tool/action names without personal or device identifiers.
 2. Use [mode selection](references/mode-selection.md) to distinguish current session widgets, dashboard A2UI, native node panels, and legacy node A2UI.
 3. For current HTML widgets, adapt the synthetic arguments in `examples/widget-good.json` to the installed `show_widget` schema. The outer plan is not tool input.
-4. For current A2UI, read [payload contract](references/payload-contract.md). Do not send legacy node pushes to a dashboard or invent the registered-source envelope.
+4. For current A2UI, read [payload contract](references/payload-contract.md). For an authorized synthetic-only renderer test, follow [the runnable v0.8 demo](docs/A2UI_DEMO.md); it is tested with OpenClaw 2026.8.2, not proof of Gateway or agent integration. Do not send legacy node pushes to a dashboard or invent the registered-source envelope.
 5. Only if the installed node advertises the legacy actions, use the legacy plans as order-only comparisons. Direct push is this lab's minimal convention, not an upstream ban on `canvas.present`.
 6. Inspect the tool result and, when useful, the visible surface. A preflight pass, receipt, or timeout alone does not prove rendering. Diagnose using [reproduction](references/reproduction.md).
 

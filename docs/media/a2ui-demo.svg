@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" role="img" aria-labelledby="title desc">
+<title id="title">A2UI: from three messages to a visible update</title>
+<desc id="desc">Original schematic, not a screenshot. Create components, load synthetic data, begin rendering, and then update the bound message.</desc>
+<rect width="1120" height="400" rx="24" fill="#102c43"/>
+<g font-family="system-ui, sans-serif" fill="#f3fafc">
+<text x="40" y="57" font-size="29" font-weight="700">ONE SURFACE. A VISIBLE DATA UPDATE.</text>
+<text x="40" y="89" font-size="17" fill="#c6d9e5">Real v0.8 messages + your installed OpenClaw renderer</text>
+<g fill="#193e55" stroke="#426177"><rect x="40" y="122" width="310" height="79" rx="12"/><rect x="405" y="122" width="310" height="79" rx="12"/><rect x="770" y="122" width="310" height="79" rx="12"/></g>
+<g font-size="22" font-weight="600"><text x="60" y="156">1 / surfaceUpdate</text><text x="425" y="156">2 / dataModelUpdate</text><text x="790" y="156">3 / beginRendering</text></g>
+<g font-size="16" fill="#c6d9e5"><text x="60" y="182">Create a column + two text nodes</text><text x="425" y="182">Load a synthetic message</text><text x="790" y="182">Display the root component</text></g>
+<g font-size="30" fill="#7fe0cd"><text x="367" y="171">→</text><text x="732" y="171">→</text></g>
+<rect x="40" y="234" width="1040" height="96" rx="12" fill="#15374a" stroke="#7fe0cd"/>
+<text x="63" y="269" font-size="18" fill="#c6d9e5">CLICK “APPLY SYNTHETIC UPDATE”</text>
+<text x="63" y="307" font-size="24">Synthetic data loaded</text><text x="403" y="307" font-size="27" fill="#7fe0cd">→</text><text x="466" y="307" font-size="24">Synthetic update received</text>
+<text x="40" y="371" font-size="16" fill="#c6d9e5">Illustrated flow, not a screenshot · No credentials · No Gateway session · Stop the local server after testing</text>
+</g></svg>

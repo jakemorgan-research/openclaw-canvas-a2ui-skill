@@ -1,0 +1,3 @@
+{"surfaceUpdate":{"surfaceId":"demo","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["heading","status"]}}}},{"id":"heading","component":{"Text":{"text":{"literalString":"A2UI acceptance card"},"usageHint":"h1"}}},{"id":"status","component":{"Text":{"text":{"path":"/message"}}}}]}}
+{"dataModelUpdate":{"surfaceId":"demo","path":"/","contents":[{"key":"message","valueString":"Synthetic data loaded"}]}}
+{"beginRendering":{"surfaceId":"demo","root":"root"}}
