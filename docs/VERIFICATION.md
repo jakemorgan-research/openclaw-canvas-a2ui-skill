@@ -2,7 +2,7 @@
 
 Review date: 2026-09-03. Distribution: experimental source toolkit; visibility and Release publication require separate approval.
 
-Local review: 32 Python test methods passed. The HTML card was inspected at desktop and narrow widths; original SVG diagrams were visually reviewed. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. [Recorded acceptance](ACCEPTANCE.md) adds isolated skill installation/discovery and a real v0.8 renderer display/update on OpenClaw 2026.8.2. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
+Local review: 38 Python test methods passed. The HTML card was inspected at desktop and narrow widths; original SVG diagrams were visually reviewed. Skill frontmatter and workflow/issue YAML parsed successfully. Repository and local reachable-history privacy scans reported no configured matches. [Recorded acceptance](ACCEPTANCE.md) adds isolated skill installation/discovery and a real v0.8 renderer display/update on OpenClaw 2026.8.2. These are local checks; inspect the current GitHub Actions run for remote CI evidence.
 
 | Layer | Evidence / limit |
 | --- | --- |
@@ -15,6 +15,8 @@ Local review: 32 Python test methods passed. The HTML card was inspected at desk
 | Current API guidance | Default-branch docs inspected; installed releases can differ |
 | Legacy action plans | Order-only convention; not the new runnable v0.8 payload example |
 | Live Gateway / node / dashboard | Not executed by this repository's CI; user acceptance still required |
+
+Capability-gate regression covers a misleading real-world shape: legacy node actions advertised together with `renderer: none`. The expected result is `stop`, not a push attempt. Current upstream routing was rechecked on 2026-09-04. A separate local acceptance found Gateway health but no render-capable Windows node, so no end-to-end success is claimed.
 
 ## Before a public release
 

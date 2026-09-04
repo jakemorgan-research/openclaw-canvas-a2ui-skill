@@ -31,9 +31,9 @@ python -m unittest discover -s tests -v
 | --- | --- |
 | Widget | 在支持的会话界面展示的小组件 |
 | A2UI | 需要对应渲染器和数据格式的界面描述 |
-| Legacy Canvas | 旧版节点动作；仅在你的环境确实提供时使用 |
+| 历史 Canvas 动作 | 只用于离线理解旧记录；看到动作名称也不要直接执行 |
 
-先让 Agent 查看已安装版本和可用工具，不要只凭仓库名字选择旧命令。
+先让 Agent 查看已安装版本和当前支持的展示面。A2UI 走 Dashboard；原生面板走 `show_widget` 的 `node_panel` 目标。节点只暴露 `canvas.a2ui.*` 或返回 `renderer: none` 时必须停止。
 
 ## 4 · 安装并做一个小尝试
 

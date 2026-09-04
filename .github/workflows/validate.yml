@@ -24,6 +24,14 @@ jobs:
         run: python scripts/check_docs.py
       - name: Behavioral tests
         run: python -m unittest discover -s tests -v
+      - name: Current route and fail-closed capability examples
+        shell: bash
+        run: |
+          python scripts/check_capabilities.py examples/capability-dashboard.json
+          set +e
+          python scripts/check_capabilities.py examples/capability-node-no-renderer.json
+          result=$?
+          test "$result" -eq 1
       - name: Current and legacy teaching plans
         run: |
           python scripts/validate_sequence.py examples/widget-good.json

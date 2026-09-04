@@ -5,16 +5,17 @@
 | --- | --- | --- |
 | [中文五步入门](docs/GETTING_STARTED.zh-CN.md) | [Synthetic widget example](examples/README.md) | [Developer guide](docs/DEVELOPER_GUIDE.md) |
 
-<p align="center"><img src="docs/media/workflow.svg" alt="Check installed capabilities before choosing current or legacy profile; validate and inspect the actual result" width="100%"></p>
+<p align="center"><img src="docs/media/workflow.svg" alt="Choose a current supported surface; keep legacy node actions as offline history only" width="100%"></p>
 
 ## Run something now — no account or key required
 
 ```text
 python scripts/validate_sequence.py examples/widget-good.json
+python scripts/check_capabilities.py examples/capability-dashboard.json
 python -m unittest discover -s tests -v
 ```
 
-Expected: a preflight PASS and passing tests. Open [the local preview](examples/widget-preview.html) in a browser after downloading the repository. It displays a synthetic status card without network requests.
+Expected: a preflight PASS, `ROUTE: dashboard-a2ui`, and passing tests. Open [the local preview](examples/widget-preview.html) in a browser after downloading the repository. It displays a synthetic status card without network requests. Run the no-renderer fixture separately: `python scripts/check_capabilities.py examples/capability-node-no-renderer.json`; `STOP` and exit code 1 are expected.
 
 **The preview is HTML, not A2UI.** For a real A2UI surface and a visible data update, follow the [renderer demo](docs/A2UI_DEMO.md). It uses your installed OpenClaw renderer, synthetic JSONL, and a loopback-only server; no Gateway or model credentials are required. The older `.json` files remain teaching plans.
 
@@ -29,10 +30,10 @@ Expected: a preflight PASS and passing tests. Open [the local preview](examples/
 | Current widget-capable session | [HTML widget example](examples/widget-good.json) and the installed `show_widget` schema |
 | Learn real A2UI v0.8 payloads | [Runnable card and update](docs/A2UI_DEMO.md), tested with the installed 2026.8.2 renderer |
 | Current A2UI dashboard integration | [Payload contract](references/payload-contract.md); use the installed registered-source schema |
-| Older node exposing `canvas.a2ui.*` | [Legacy order-only examples](references/mode-selection.md) |
+| Only a node exposing `canvas.a2ui.*` | Stop; use the files only to [interpret historical traces](references/mode-selection.md) |
 | No matching capability | Stop; do not guess commands or weaken permissions |
 
-Upstream documentation inspected on **2026-09-02** separates dashboard A2UI from node Canvas. This repository does not claim that historical node commands work in every release. [Official node reference](https://github.com/openclaw/openclaw/blob/main/docs/nodes/index.md#macos-widget-panel).
+Upstream documentation rechecked on **2026-09-04** places A2UI on session dashboards and uses `show_widget` for an eligible native widget panel. Advertised legacy node actions are not renderer evidence. [Official node reference](https://github.com/openclaw/openclaw/blob/main/docs/nodes/index.md#macos-widget-panel).
 
 ## Install the companion skill
 
@@ -51,7 +52,7 @@ Try asking:
 <details>
 <summary><strong>What the validator does — and does not do</strong></summary>
 
-It rejects malformed plans, unknown actions, wrong profile/mode combinations, and legacy sequences outside this lab's minimal-order convention. The current HTML profile checks required fields and rejects capability requests in the teaching plan.
+It rejects malformed plans, unknown actions, wrong profile/mode combinations, and historical sequences outside this lab's recorded convention. The current HTML profile checks required fields and rejects capability requests in the teaching plan. `check_capabilities.py` separately refuses unsupported runtime routes.
 
 It does not validate the full OpenClaw or A2UI schema, execute tools, sandbox arbitrary HTML, or prove rendering. [Exact contract](references/validation.md).
 </details>

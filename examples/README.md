@@ -11,7 +11,9 @@
 
 The preview shares the exact card markup with the current widget plan, but uses its own preview stylesheet. It is **not an A2UI rendering sample**.
 
-The four legacy JSON plans contain no payload. They teach the lab's action-order contract only. The bad-present-first plan must fail locally; that does not establish a universal upstream bug.
+The four legacy JSON plans contain no payload. They preserve an offline historical action-order comparison only and must not be executed against a node. The bad-present-first plan must fail locally; that does not establish a universal upstream bug or identify a supported current route.
+
+For a current capability decision, validate [capability-dashboard.json](capability-dashboard.json) and [capability-node-no-renderer.json](capability-node-no-renderer.json) with `python scripts/check_capabilities.py <file>`. The first selects `dashboard-a2ui`; the second deliberately returns `stop` even though legacy actions are advertised.
 
 ## Ready for real A2UI?
 

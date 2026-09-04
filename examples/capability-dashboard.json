@@ -1,0 +1,7 @@
+{
+  "showWidget": true,
+  "dashboardA2UI": true,
+  "nodePanel": false,
+  "legacyActions": false,
+  "renderer": "a2ui-v0.8"
+}

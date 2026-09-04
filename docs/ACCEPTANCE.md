@@ -11,7 +11,7 @@ Date: **2026-09-03**. Runtime: **OpenClaw 2026.8.2 (0965053)**, Node **24.15.0**
 | Real renderer | Used the installed v0.8 bundle; the `demo` surface and synthetic card appeared in the browser |
 | Initial data | The card displayed `Synthetic data loaded` |
 | Data update | Clicking the page button changed the card to `Synthetic update received` |
-| Automated regression | 32 local Python test methods passed; fixture and transport tests do not substitute for the observed renderer test |
+| Automated regression | 38 local Python test methods passed after adding the fail-closed capability gate; fixture and transport tests do not substitute for the observed renderer test |
 
 Installation used fresh state, configuration, and workspace directories. The subprocess received only minimal runtime environment variables and isolated `OPENCLAW_STATE_DIR` / `OPENCLAW_CONFIG_PATH` values. The test did not read the user's normal configuration or sessions. Raw installation output can contain local paths and is deliberately not included here.
 
